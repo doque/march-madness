@@ -6,12 +6,14 @@ module.exports.hello = async event => {
     'https://projects.fivethirtyeight.com/march-madness-api/2019/madness.json'
   );
 
+  const current = data.forecasts.mens.current_run;
+
   return {
     statusCode: 200,
     headers: {
       'Content-Type': 'text/xml'
     },
-    body: jsontoxml.parse('data', data)
+    body: jsontoxml.parse('data', current)
   };
 
   // Use this code if you don't use the http event with the LAMBDA-PROXY integration
